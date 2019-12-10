@@ -15,11 +15,11 @@ int
 main(int argc, char **argv) {
 	int fd = -1;
 	char buf[1024];
-	unsigned long long total_kib, avail_kib;
+	unsigned long total_kib, avail_kib;
 	struct {
 		char const *const name;
 		size_t const len;
-		unsigned long long *const val;
+		unsigned long *const val;
 	} const entries[] = {
 		{ ENTRY_NAME("MemTotal"),     &total_kib },
 		{ ENTRY_NAME("MemAvailable"), &avail_kib },
@@ -27,7 +27,7 @@ main(int argc, char **argv) {
 		{ ENTRY_NAME("SwapFree"),     &avail_kib },
 	};
 	unsigned prev_percent = -1;
-	unsigned long long prev_total_hgi = -1, prev_used_hgi = -1;
+	unsigned long prev_total_hgi = -1, prev_used_hgi = -1;
 
 	(void)setlocale(LC_ALL, "");
 	setbuf(stdout, NULL); /* Disable buffering. */
@@ -42,7 +42,7 @@ main(int argc, char **argv) {
 	}
 
 	for (;;) {
-		unsigned long long total_hgi, used_hgi;
+		unsigned long total_hgi, used_hgi;
 
 		unsigned i;
 		ssize_t r;
@@ -57,19 +57,19 @@ main(int argc, char **argv) {
 
 			die("Cannot read /proc/meminfo");
 		}
-	
+
 		for (i = 0, p = buf;;p = strchrnul(p, '\n') + 1) {
 			if (0 == memcmp(p, entries[i].name, entries[i].len)) {
-				*entries[i].val += strtoull(p + entries[i].len, &p, 10);
+				*entries[i].val += strtoul(p + entries[i].len, &p, 10);
 
 				if (++i >= (sizeof entries / sizeof *entries))
 					break;
 			}
 		}
 
-		percent = 100 - (unsigned)((100ULL * avail_kib) / total_kib);
-		total_hgi = 100ULL * total_kib / 1024 / 1024;
-		used_hgi = 100ULL * (total_kib - avail_kib) / 1024 / 1024;
+		percent = 100 - (unsigned)((100UL * avail_kib) / total_kib);
+		total_hgi = (100UL * total_kib) / 1024UL / 1024UL;
+		used_hgi = (100UL * (total_kib - avail_kib)) / 1024UL / 1024UL;
 
 		if (prev_percent != percent
 		    || prev_total_hgi != total_hgi
