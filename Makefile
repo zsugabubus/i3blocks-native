@@ -19,7 +19,7 @@ all: $(TARGETS)
 $(TARGETS): %: $(OUTDIR)/%
 
 $(OUTDIR)/%: $(SRCDIR)/%.c
-	$(CC) $(CFLAGS) $(CLIBS_$(notdir $(basename $@))) $< -o $@
+	$(CC) $(CFLAGS) $(CLIBS_$(notdir $(basename $@))) $< $(SRCDIR)/util/format.c -o $@
 	$(STRIP) $(STRIPFLAGS) $@
 
 .PHONY: clean

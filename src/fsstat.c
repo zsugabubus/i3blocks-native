@@ -6,7 +6,7 @@
 #include <sys/statvfs.h>
 #include <unistd.h>
 
-#include "sizef.h"
+#include "util/format.h"
 
 int
 main(void) {
@@ -29,8 +29,8 @@ main(void) {
 		return EXIT_FAILURE;
 	}
 
-	sizef(&buf, st.f_bsize * st.f_bavail);
-	printf("%c%.*s\n", (st.f_flag & ST_RDONLY ? '*' : ' '), 4, buf);
+	fmt_space(buf, st.f_bsize * st.f_bavail);
+	printf("%.*s %.*si\n\n", !!(st.f_flag & ST_RDONLY), "*", 4, buf);
 	return EXIT_SUCCESS;
 }
 /* vi:set ts=4 sw=4 noet: */

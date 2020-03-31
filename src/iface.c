@@ -25,7 +25,7 @@
 #include <wchar.h>
 
 #include "getopt.h"
-#include "sizef.h"
+#include "util/format.h"
 
 #define NSEC_PER_SEC 1000000000L
 
@@ -250,7 +250,7 @@ main(int argc, char **argv) {
 						(void)ioctl(sfd, SIOCGIWESSID, &iwr);
 
 						if(0 == ioctl(sfd, SIOCGIWRATE, &iwr))
-							sizef(&link_speed_str, iwr.u.bitrate.value);
+							fmt_speed(link_speed_str, iwr.u.bitrate.value);
 
 					}
 					break;
@@ -334,10 +334,10 @@ main(int argc, char **argv) {
 			last_rx_bytes = rx_bytes;
 			last_tx_bytes = tx_bytes;
 
-			sizef(&frx, rx_bytes);
-			sizef(&ftx, tx_bytes);
-			sizef(&fdelta_rx, delta_rx_bytes);
-			sizef(&fdelta_tx, delta_tx_bytes);
+			fmt_speed(frx, rx_bytes);
+			fmt_speed(ftx, tx_bytes);
+			fmt_speed(fdelta_rx, delta_rx_bytes);
+			fmt_speed(fdelta_tx, delta_tx_bytes);
 
 			printf("\
 {\
