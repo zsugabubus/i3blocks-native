@@ -55,7 +55,7 @@ main(int argc, char **argv) {
 		if (EINTR == errno) \
 			continue; \
 		else \
-			die("Cannot open " SYSBL "/.../" subpath);
+			die("Failed to open " SYSBL "/.../" subpath);
 
 	OPEN(sysbl.enabled_fd, "device/enabled");
 	OPEN(sysbl.actual_brightness_fd, "actual_brightness");
@@ -63,7 +63,8 @@ main(int argc, char **argv) {
 
 #undef OPEN
 
-	sfd = acpi_socket();
+	if (-1 == (sfd = acpi_socket()))
+		exit(EXIT_FAILURE);
 
 	for (;;) {
 		char buf[20];
@@ -78,7 +79,7 @@ main(int argc, char **argv) {
 			if (EINTR == errno)
 				continue;
 
-			die("Cannot read " SYSBL "/.../device/enabled");
+			die("Failed to read " SYSBL "/.../device/enabled");
 		}
 		buf[r] = '\0';
 
@@ -90,7 +91,7 @@ main(int argc, char **argv) {
 				if (EINTR == errno) \
 					continue; \
 				else \
-					die("Cannot read " SYSBL "/.../" #res); \
+					die("Failed to read " SYSBL "/.../" #res); \
 			buf[r] = '\0'; \
 			bl.res = strtoul(buf, NULL, 10);
 

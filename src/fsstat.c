@@ -25,7 +25,7 @@ main(void) {
 			continue;
 		}
 
-		fprintf(stderr, "Couldn't open %s: %s.", path, strerror(errno));
+		fprintf(stderr, "Failed to stat %s: %s.", path, strerror(errno));
 		return EXIT_FAILURE;
 	}
 

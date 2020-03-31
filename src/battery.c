@@ -65,7 +65,7 @@ main(int argc, char **argv) {
 		if (errno == EINTR) { \
 			continue; \
 		} else { \
-			die("Cannot read " SYSPOWER "/.../" #res); \
+			die("Failed to read " SYSPOWER "/.../" #res); \
 		} \
 	}
 
@@ -120,7 +120,7 @@ main(int argc, char **argv) {
 			if (EINTR == errno)
 				continue;
 
-			die("Cannot read " SYSPOWER "/.../online");
+			die("Failed to read " SYSPOWER "/.../online");
 		}
 		buf[r] = '\0';
 
@@ -135,7 +135,7 @@ main(int argc, char **argv) {
 			if (EINTR == errno)
 				continue;
 
-			die("Cannot read " SYSPOWER "/.../status");
+			die("Failed to read " SYSPOWER "/.../status");
 		}
 		buf[r] = '\0';
 
@@ -153,7 +153,7 @@ main(int argc, char **argv) {
 			if (EINTR == errno) \
 				continue; \
  \
-			die("Cannot read " SYSPOWER "/.../" #res); \
+			die("Failed to read " SYSPOWER "/.../" #res); \
 		} \
 		buf[r] = '\0'; \
 		bat.res##_uah = strtoull(buf, NULL, 10);

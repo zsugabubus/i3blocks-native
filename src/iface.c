@@ -27,6 +27,9 @@
 #include "getopt.h"
 #include "util/format.h"
 
+#define UPLOAD_LABEL ""
+#define DOWNLOAD_LABEL ""
+
 #define NSEC_PER_SEC 1000000000L
 
 #define die(s) do { perror(s); exit(EXIT_FAILURE); } while (0)
@@ -231,7 +234,7 @@ main(int argc, char **argv) {
 					if (0 == ioctl(sfd, SIOCGIWNAME, &iwr)) {
 						struct iw_statistics iwstat;
 
-						icon_str = L"";
+						icon_str = L" ";
 
 						iwr.u.data.pointer = &iwstat;
 						iwr.u.data.length = sizeof(iwstat);
@@ -341,8 +344,8 @@ main(int argc, char **argv) {
 
 			printf("\
 {\
-	\"full_text\": \"%ls%s%s%s  %.*s+%.*s  %.*s+%.*s\", \
-	\"short_text\": \"%ls%.*s %.*s\"\
+	\"full_text\": \"%ls%s%s%s " DOWNLOAD_LABEL " %.*s+%.*s " UPLOAD_LABEL " %.*s+%.*s\", \
+	\"short_text\": \"%ls" DOWNLOAD_LABEL "%.*s " UPLOAD_LABEL "%.*s\"\
 }\n",
 				/* Full text. */
 				icon_str,

@@ -14,11 +14,11 @@ acpi_socket(void) {
 		strncpy(sa.sun_path, "/var/run/acpid.socket", sizeof sa.sun_path - 1);
 
 		if (connect(sfd, (struct sockaddr *)&sa, sizeof sa) == -1) {
-			perror("Cannot connect to acpid.socket");
+			perror("Failed to connect to acpid.socket");
 			(void)close(sfd), sfd = -1;
 		}
 	} else {
-		perror("Cannot open socket");
+		perror("Failed to open socket");
 	}
 
 	return sfd;
@@ -58,7 +58,7 @@ acpi_wait(int const sfd, char const *const events, int timeout) {
 			if (errno == EINTR)
 				continue;
 
-			perror("Cannot read acpid.socket");
+			perror("Failed to read acpid.socket");
 			return -1;
 		}
 		buf[r] = '\0';

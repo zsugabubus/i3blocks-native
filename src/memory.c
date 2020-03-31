@@ -38,7 +38,7 @@ main(int argc, char **argv) {
 		if (EINTR == errno)
 			continue;
 
-		die("Cannot open /proc/meminfo");
+		die("Failed to open /proc/meminfo");
 	}
 
 	for (;;) {
@@ -55,7 +55,7 @@ main(int argc, char **argv) {
 			if (EINTR == errno)
 				continue;
 
-			die("Cannot read /proc/meminfo");
+			die("Failed to read /proc/meminfo");
 		}
 
 		for (i = 0, p = buf;;p = strchrnul(p, '\n') + 1) {

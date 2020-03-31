@@ -26,7 +26,7 @@ main(int argc, char **argv) {
 		if (EINTR == errno)
 			continue;
 
-		die("Cannot open /proc/stat");
+		die("Failed to open /proc/stat");
 	}
 
 	for (;;) {
@@ -41,7 +41,7 @@ main(int argc, char **argv) {
 			if (EINTR == errno)
 				continue;
 
-			die("Cannot read /proc/stat");
+			die("Failed read /proc/stat");
 		}
 
 		new_total = 0ULL, new_idle = 0ULL;
