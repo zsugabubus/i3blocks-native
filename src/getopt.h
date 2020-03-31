@@ -19,4 +19,4 @@ parse_opts(int argc, char *argv[]) {
 		}
 	}
 }
-/* vi:set ts=4 sw=4 noet: */
+/* vi:set noet: */

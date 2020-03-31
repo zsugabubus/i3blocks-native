@@ -70,4 +70,4 @@ main(int argc, char **argv) {
 		(void)sleep(timeout);
 	}
 }
-/* vi:set ts=4 sw=4 noet: */
+/* vi:set noet: */

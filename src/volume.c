@@ -106,4 +106,4 @@ err_close:
 err:
 	return (err == 0 ? EXIT_SUCCESS : EXIT_FAILURE);
 }
-/* vi:set ts=4 sw=4 noet: */
+/* vi:set noet: */

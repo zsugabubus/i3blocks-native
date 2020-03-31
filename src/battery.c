@@ -161,7 +161,7 @@ main(int argc, char **argv) {
 		UPDATE(charge_now);
 		UPDATE(charge_full);
 		UPDATE(charge_full_design);
-		
+
 #undef UPDATE
 
 		if (ac.status == AC_ONL && bat.charge_now_uah == bat.charge_full_uah) {
@@ -180,10 +180,10 @@ main(int argc, char **argv) {
 			case 0:
 				(void)usleep(DEBOUNCE_TIMEOUT_MS /*ms*/* 1000);
 			}
-			
+
 		} else {
 			(void)sleep(timeout);
 		}
 	}
 }
-/* vi:set ts=4 sw=4 noet: */
+/* vi:set noet: */
