@@ -1,4 +1,6 @@
-#!/bin/dash
+#!/usr/bin/dash
+
+# https://ident.me
 
 if [ -z "$BLOCK_BUTTON" ]; then
   ip=""

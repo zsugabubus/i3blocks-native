@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/usr/bin/dash
 # http://paletton.com/#uid=12l0u0kg8YS2a+Zas+tk-Uzn-J6
 playerctl metadata -F --format "{{ status }} {{ volume }} {{ artist }} — {{ title }}" |
 while read status volume playing; do
