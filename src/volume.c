@@ -49,7 +49,7 @@ main(void) {
 		int unmuted;
 
 		if ((err = snd_mixer_open(&mixer, 0 /* Unused. */)) < 0)
-			snd_die(err_free_selem, "Failed to open mixer");
+			snd_die(err_close, "Failed to open mixer");
 
 		if ((err = snd_mixer_attach(mixer, card)) < 0)
 			snd_die(err_free_mixer, "snd_mixer_attach()");
@@ -77,7 +77,7 @@ main(void) {
 		}
 
 		if ((err = snd_mixer_close(mixer)) < 0)
-			snd_die(err_free_selem, "snd_mixer_close()");
+			snd_die(err_close, "snd_mixer_close()");
 
 		icon = unmuted ? L"墳" : L"婢"; /* "奄" "奔" */
 		printf("%ls %.2fdB\n",
@@ -88,7 +88,7 @@ main(void) {
 
 		for (;;) {
 			if ((err = snd_ctl_read(ctl, event)) < 0)
-				snd_die(err_free_selem, "Failed to read event");
+				snd_die(err_close, "Failed to read event");
 
 			/* Changed. */
 			if (snd_ctl_event_get_type(event) == SND_CTL_EVENT_ELEM
@@ -99,8 +99,6 @@ main(void) {
 
 err_free_mixer:
 	(void)snd_mixer_close(mixer);
-err_free_selem:
-	snd_mixer_selem_id_free(sid);
 err_close:
 	(void)snd_ctl_close(ctl);
 err:
