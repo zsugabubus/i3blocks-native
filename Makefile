@@ -1,27 +1,26 @@
-CFLAGS:=-Wall -Ofast -std=c99 -Werror -Wextra -pedantic -D_GNU_SOURCE
-CLIBS_volume:=-lasound
+CFLAGS := -Wall -Ofast -std=c99 -Werror -Wextra -pedantic -D_GNU_SOURCE
+CLIBS_volume := -lasound
 
-SRCS=$(wildcard $(SRCDIR)/*.c)
-TARGETS=$(patsubst $(SRCDIR)/%.c,%,$(SRCS))
+SRCS = $(wildcard $(SRCDIR)/*.c)
+TARGETS = $(patsubst $(SRCDIR)/%.c,%,$(SRCS))
 
-SRCDIR:=src
+SRCDIR := src
 # XXX: Binaries should go to ~/.local/lib/arch-id/.
-OUTDIR:=scripts
+OUTDIR := scripts
 
-RM:=/usr/bin/rm
-STRIP:=/usr/bin/strip
-STRIPFLAGS:=-s -R .comment -R .gnu.version --strip-unneeded
+RM := rm -f
+STRIP := strip
+STRIPFLAGS := -s -R .comment -R .gnu.version --strip-unneeded
 
-.PHONY: all
-all: $(TARGETS)
+all : $(TARGETS)
 
-.PHONY: $(TARGETS)
-$(TARGETS): %: $(OUTDIR)/%
+$(TARGETS) : %: $(OUTDIR)/%
 
-$(OUTDIR)/%: $(SRCDIR)/%.c
-	$(CC) $(CFLAGS) $(CLIBS_$(notdir $(basename $@))) $< $(SRCDIR)/util/format.c -o $@
+$(OUTDIR)/% : $(SRCDIR)/%.c
+	$(CC) $(CFLAGS) $(CLIBS_$(notdir $(basename $@))) $< $(SRCDIR)/fourmat/fourmat.c -o $@
 	$(STRIP) $(STRIPFLAGS) $@
 
-.PHONY: clean
-clean:
+clean :
 	$(RM) $(addprefix $(OUTDIR)/,$(TARGETS))
+
+.PHONY : all clean $(TARGETS)

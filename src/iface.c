@@ -25,7 +25,7 @@
 #include <wchar.h>
 
 #include "getopt.h"
-#include "util/format.h"
+#include "fourmat/fourmat.h"
 
 #define UPLOAD_LABEL ""
 #define DOWNLOAD_LABEL ""

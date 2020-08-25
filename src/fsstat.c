@@ -6,7 +6,7 @@
 #include <sys/statvfs.h>
 #include <unistd.h>
 
-#include "util/format.h"
+#include "fourmat/fourmat.h"
 
 int
 main(void) {
