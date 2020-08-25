@@ -198,7 +198,7 @@ main(int argc, char **argv) {
 			}
 
 			for (nlh = (struct nlmsghdr *)buf; NLMSG_OK(nlh, len);
-			    nlh = NLMSG_NEXT(nlh, len)) {
+			     nlh = NLMSG_NEXT(nlh, len)) {
 				size_t rtl;
 
 				switch (nlh->nlmsg_type) {
@@ -274,7 +274,7 @@ main(int argc, char **argv) {
 
 				for (; RTA_OK(rta, rtl); rta = RTA_NEXT(rta, rtl)) {
 					switch (rta->rta_type) {
-					case IFA_ADDRESS: /* case IFLA_ADDRESS: */
+					case IFLA_ADDRESS:
 						switch (nlh->nlmsg_type) {
 						case RTM_GETADDR:
 						case RTM_NEWADDR: {
@@ -344,7 +344,7 @@ main(int argc, char **argv) {
 
 			printf("\
 {\
-	\"full_text\": \"%ls%s%s%s " DOWNLOAD_LABEL " %.*s+%.*s " UPLOAD_LABEL " %.*s+%.*s\", \
+	\"full_text\": \"%ls%s%s%s " DOWNLOAD_LABEL " %.*s @ %.*s " UPLOAD_LABEL " %.*s @ %.*s\", \
 	\"short_text\": \"%ls" DOWNLOAD_LABEL "%.*s " UPLOAD_LABEL "%.*s\"\
 }\n",
 				/* Full text. */

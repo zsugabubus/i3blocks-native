@@ -1,5 +1,7 @@
 #!/usr/bin/dash
-
+ip=$(upnpc -s 2>/dev/null | awk -F ' = ' '$1=="ExternalIPAddress"{print $2}')
+printf " %s\n" "$ip"
+exit
 # https://ident.me
 
 if [ -z "$BLOCK_BUTTON" ]; then

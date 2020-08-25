@@ -165,7 +165,7 @@ main(int argc, char **argv) {
 #undef UPDATE
 
 		if (ac.status == AC_ONL && bat.charge_now_uah == bat.charge_full_uah) {
-			printf("\n");
+			printf("\n"); /*  */
 		} else {
 			printf("%s %3u%%\n",
 					ac.status == AC_ONL ? " " : ac.status == AC_OFL ? "" : "??",
