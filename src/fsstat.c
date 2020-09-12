@@ -33,4 +33,3 @@ main(void) {
 	printf("%.*s %.*si\n\n", !!(st.f_flag & ST_RDONLY), "*", 4, buf);
 	return EXIT_SUCCESS;
 }
-/* vi:set noet: */

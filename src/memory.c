@@ -94,4 +94,3 @@ main(int argc, char **argv) {
 		(void)sleep(timeout);
 	}
 }
-/* vi:set noet: */

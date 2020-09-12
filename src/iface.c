@@ -367,4 +367,3 @@ main(int argc, char **argv) {
 		}
 	}
 }
-/* vi:set noet: */

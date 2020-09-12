@@ -77,4 +77,3 @@ acpi_wait(int const sfd, char const *const events, int timeout) {
 	}
 
 }
-/* vi:set ts=4 sw=4 noet: */

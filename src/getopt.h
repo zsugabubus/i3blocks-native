@@ -19,4 +19,3 @@ parse_opts(int argc, char *argv[]) {
 		}
 	}
 }
-/* vi:set noet: */
